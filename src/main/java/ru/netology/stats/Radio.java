@@ -13,47 +13,70 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int newCurrentRadioStation) {
+        if (newCurrentRadioStation < 0) {
+            currentRadioStation = 0;
+            return;
+        }
+
+        if (newCurrentRadioStation > 9) {
+            currentRadioStation = 9;
+            return;
+        }
         currentRadioStation = newCurrentRadioStation;
 
     }
 
-    public void setNextRadioStation(int nextRadioStation) {
-        if (nextRadioStation >= 9) {
+    public void installingNextRadioStation() {
+        int nextStation = currentRadioStation;
+        currentRadioStation = nextStation;
+        if (nextStation >= 9) {
             currentRadioStation = 0;
         } else {
-            nextRadioStation = nextRadioStation + 1;
-            currentRadioStation = nextRadioStation;
+            currentRadioStation++;
         }
     }
 
-    public void setPrevRadioStation(int prevRadioStation) {
-        if (prevRadioStation <= 0) {
+    public void installingPrevRadioStation() {
+        int prevStation = currentRadioStation;
+        currentRadioStation = prevStation;
+        if (prevStation <= 0) {
             currentRadioStation = 9;
         } else {
-            prevRadioStation = prevRadioStation - 1;
-            currentRadioStation = prevRadioStation;
+            currentRadioStation--;
+
         }
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            currentVolume = 0;
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            currentVolume = 100;
+            return;
+        }
         currentVolume = newCurrentVolume;
     }
 
-    public void setIncreaseVolume(int newVolumeValue) {
-        if (newVolumeValue >= 100) {
+    public void installingIncreaseVolume() {
+        int increaseVolume = currentVolume;
+        currentVolume = increaseVolume;
+        if (increaseVolume >= 100) {
             currentVolume = 100;
         } else {
-            newVolumeValue = newVolumeValue + 1;
-            currentVolume = newVolumeValue;
+            currentVolume++;
         }
     }
 
-    public void setReduceVolume(int reduceVolumeValue) {
-        if (reduceVolumeValue <= 0) {
+    public void installingReduceVolume() {
+        int reduceVolume = currentVolume;
+        currentVolume = reduceVolume;
+        if (reduceVolume <= 0) {
             currentVolume = 0;
         } else {
-            reduceVolumeValue = reduceVolumeValue - 1;
-            currentVolume = reduceVolumeValue;
+            currentVolume--;
+
         }
     }
 
